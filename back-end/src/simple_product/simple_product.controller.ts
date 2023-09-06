@@ -3,7 +3,7 @@ import { SimpleProduct } from "./simple_product.model";
 import { SimpleProductService } from "./simple_product.service";
 
 
-@Controller('api/v1/simple_product')
+@Controller('api/simple_product')
 export  class SimpleProductController{
     
     constructor(private readonly simpleProductService:SimpleProductService){}

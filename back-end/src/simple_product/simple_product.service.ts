@@ -25,7 +25,10 @@ export class SimpleProductService{
     async updateSimpleProduct(id:Number, data:SimpleProduct): Promise<SimpleProduct>{
         return this.prisma.simpleProduct.update({
             where:{id: Number(id)},
-            data:{description:data.description, value:data.value}
+            data:{
+                description:data.description, 
+                value:data.value
+            }
         })
     }
 
