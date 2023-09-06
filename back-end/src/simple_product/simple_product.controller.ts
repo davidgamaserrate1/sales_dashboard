@@ -28,7 +28,7 @@ export  class SimpleProductController{
         return this.simpleProductService.deleteSimpleProduct(id)
     }
 
-    @Put()
+    @Put(':id')
     async editSimpleProduct(@Param('id') id:number, @Body() postData:SimpleProduct):Promise<SimpleProduct>{
         return this.simpleProductService.updateSimpleProduct(id, postData)
     }

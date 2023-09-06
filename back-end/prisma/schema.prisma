@@ -15,3 +15,10 @@ model SimpleProduct{
   description String?
   value Int
 }
+
+model DigitalProduct{
+  id Int @id @default(autoincrement())
+  description String?
+  value Int
+  linkDownload String
+}
