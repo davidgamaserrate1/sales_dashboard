@@ -1,0 +1,39 @@
+.cardItem{
+    background-color: #fff;
+    width: 216px;
+    height: 215px;
+    border-radius: 10px;
+    border: 2px solid #f0f0f0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+     
+}
+
+.cardItem_tittle{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.cardItem_icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+     
+}
+
+.cardItem_description{
+    width: 100%;
+}
+
+.cardItem_type{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.cardItem_type__definition{
+    font-style: italic;
+    font-weight: lighter;
+}
