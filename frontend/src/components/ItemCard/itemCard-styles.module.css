@@ -7,24 +7,29 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-     
+}
+
+.cardItem:hover{
+    transform: scale(1.02);
 }
 
 .cardItem_tittle{
     width: 100%;
     display: flex;
     justify-content: center;
+    font-weight: bold;
+    text-transform: uppercase;
 }
 
 .cardItem_icon{
     display: flex;
     justify-content: center;
-    align-items: center;
-     
+    align-items: center;     
 }
 
 .cardItem_description{
     width: 100%;
+    padding:8px;
 }
 
 .cardItem_type{

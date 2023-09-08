@@ -1,10 +1,9 @@
-import Home from "./pages/Home";
+ 
+import RoutesApp from "./routes";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-        <Home/>
-    </div>
+    <RoutesApp/>
   );
 }
 

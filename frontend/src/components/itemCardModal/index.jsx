@@ -5,25 +5,23 @@ import {
     ModalHeader,
     ModalFooter,
     ModalBody,
-    ModalCloseButton,useDisclosure, 
+    ModalCloseButton, 
     Button
   } from '@chakra-ui/react'
 
 import style from './itemCardModal-styles.module.css'
 import icon from '../../assets/icons-produtos.svg'
 
-const ItemCardModal = (props) =>{
-    const {  onClose } = useDisclosure()
+const ItemCardModal = (props) =>{     
     return (
-      <>
-        
-  
         <Modal isOpen={props.isOpen} onClose={props.onClose} isCentered>
           <ModalOverlay />
-          <ModalContent>
+          <ModalContent  style={{marginLeft:'20px', marginRight:'20px'}}>
             <ModalHeader>
-              {props.name}
-              <img src={icon}/>
+              <h2 className={style.cardItem_name}>
+                {props.name}
+              </h2>
+              <img className={style.cardItem_icon} src={icon} alt='icone do produto'/>
             </ModalHeader>
             <ModalCloseButton />
             <ModalBody>
@@ -36,21 +34,19 @@ const ItemCardModal = (props) =>{
                   {props.type}
                 </div>
               </div>
-              
               <div>
-                R${props.price}
+                R${props.value}
               </div>
             </ModalBody>
   
             <ModalFooter>
-              <Button colorScheme='blue' mr={3} onClick={onClose}>
+              <Button colorScheme='blue' mr={3} onClick={props.onClose}>
                 Fechar
               </Button>
-              <Button variant='ghost'>Secondary Action</Button>
+              <Button variant='ghost'>Comprar</Button>
             </ModalFooter>
           </ModalContent>
         </Modal>
-      </>
     )
   }
 

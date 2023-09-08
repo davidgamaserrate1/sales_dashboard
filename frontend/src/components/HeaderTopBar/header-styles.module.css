@@ -6,3 +6,19 @@
     justify-content: center;
     align-items:center;
 }
+
+.header_top__home{
+    display: flex;
+    margin: 8px;
+    align-content: center;
+    justify-content: left;
+    height: 100%;
+    border:1px solid #fff;
+}
+.header_top__home:hover{
+    width: 75px;
+    height: 100%;
+    border-radius: 10px;
+    border:1px solid #555;
+}
+ 

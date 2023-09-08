@@ -17,29 +17,29 @@ const ItemCard = (props)=>{
     return(
         <>
             <div className={style.cardItem} onClick={openModalProduct}>
-                <h1  className={style.cardItem_tittle}>nome</h1>
-                <img  className={style.cardItem_icon}  src={icon_products}/>
+                <h1  className={style.cardItem_tittle}>{props.name}</h1>
+                <img  className={style.cardItem_icon}  src={icon_products} alt="icone do produto"/>
                 
                 <p className={style.cardItem_description}> 
-                    descrição completa do item
+                    {props.description}
                 </p>
                 <div className={style.cardItem_type}>
                     <span class="material-symbols-outlined">fiber_manual_record</span>
                     <div className={style.cardItem_type__definition}>
-                        Simples
+                        {props.type}
                     </div>
                 </div>
-                <div>R$100</div>
+                <div>R${props.value}</div>
             </div>
 
             {isOpenCard &&(
                 <ItemCardModal
                     isOpen={isOpenCard}
                     onClose={closeModalItem}
-                    name="nome"
-                    description="descrição completa do item"
-                    type="Simples"
-                    price="100"
+                    name={props.name}
+                    description={props.description}
+                    type={props.type}
+                    value={props.value}
                 />
             )}
 
