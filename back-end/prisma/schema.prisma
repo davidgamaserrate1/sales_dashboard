@@ -35,20 +35,28 @@ model ConfigurableProduct {
   
 }
 
-model Group {
-  id         Int       @id @default(autoincrement())
-  name       String?
-  description String?
-  value      Int
-  group_itens GroupedProduct[]
-}
 
-model GroupedProduct {
-  id              Int      @id @default(autoincrement())
-  name            String?
-  description     String?
-  value           Int
-  groupId         Int
-  group           Group? @relation(fields: [groupId], references: [id])
-  simpleProductId Int
+model SelectAllProducts{
+   id          Int       @id @default(autoincrement())
+   name String?  @unique
+   description String
+   value Int
+   type String
 }
+// model Group {
+//   id         Int       @id @default(autoincrement())
+//   name       String?
+//   description String?
+//   value      Int
+//   group_itens GroupedProduct[]
+// }
+
+// model GroupedProduct {
+//   id              Int      @id @default(autoincrement())
+//   name            String?
+//   description     String?
+//   value           Int
+//   groupId         Int
+//   group           Group? @relation(fields: [groupId], references: [id])
+//   simpleProductId Int
+// }
