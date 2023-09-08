@@ -1,0 +1,14 @@
+{
+    "name": "imagetech-prova",
+    "version": "1.0.0",
+    "description": "Projeto prova imagetech",
+    "scripts": {
+        "start": "concurrently \"cd frontend && npm start\" \"cd back-end && npm run start:dev\""
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "concurrently": "^8.2.1"
+    }
+}

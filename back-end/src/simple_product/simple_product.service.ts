@@ -17,9 +17,7 @@ export class SimpleProductService{
     }
 
     async createSimpleProduct(data: SimpleProduct): Promise<SimpleProduct>{
-        return this.prisma.simpleProduct.create({
-            data,
-        })
+        return this.prisma.simpleProduct.create({data})
     }
 
     async updateSimpleProduct(id:Number, data:SimpleProduct): Promise<SimpleProduct>{
