@@ -9,7 +9,7 @@ const RoutesApp = ()=>{
                 <Route path="/" element={<Home/>}/>
                 <Route path="/registration/simple" element={<ProductRegistration typeRegister="simple"/>}/>
                 <Route path="/registration/digital" element={<ProductRegistration typeRegister="digital"/>}/>
-                <Route path="/registration/simple" element={<ProductRegistration typeRegister="simple"/>}/>
+                <Route path="/registration/configurable" element={<ProductRegistration typeRegister="configurable"/>}/>
                 <Route path="/registration/simple" element={<ProductRegistration typeRegister="simple"/>}/>
             </Routes>
         </BrowserRouter>

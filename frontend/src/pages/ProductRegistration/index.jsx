@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import SimpleProductForm from "../../components/SimpleProductForm";
+import DigitalProduct from "../../components/DigitalProductForm";
+import ConfigurableProduct from "../../components/ConfigurableProduct";
 
 
 const ProductRegistration = (props)=>{
@@ -31,6 +33,8 @@ const ProductRegistration = (props)=>{
       return (
         <div>
             {simple_product && (<SimpleProductForm/>)}
+            {digital_product && (<DigitalProduct/>)}
+            {configurable_product && (<ConfigurableProduct/>)}
              
                   
              

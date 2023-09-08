@@ -28,8 +28,8 @@ const AddProduct = ()=>{
                         </span>
                     </Tooltip>
                 </MenuItem>
-                <MenuItem className={style.menu_item}>
-                    Produto Digital
+                <MenuItem className={style.menu_item}>                    
+                    <a href="/registration/digital"> Produto Digital</a> 
                     <Tooltip label="produtos que não existem fisicamente e não são enviados para o cliente." aria-label='A tooltip'>
                        <span class="material-symbols-outlined">
                             help
@@ -37,7 +37,7 @@ const AddProduct = ()=>{
                     </Tooltip>
                 </MenuItem>
                 <MenuItem className={style.menu_item}>
-                    Produto Configurável
+                    <a href="/registration/configurable"> Produto Configurável</a> 
                     <Tooltip label="Recomendável para quando quando se precisa cadastrar um produto que praticamente seja o mesmo, mas varia em uma caracterís-tica, como por exemplo tamanho." aria-label='A tooltip'>
                        <span class="material-symbols-outlined">
                             help

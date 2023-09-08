@@ -1,6 +1,6 @@
 
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
     FormControl,
     FormLabel,
@@ -8,46 +8,23 @@ import {
     Input, Button,Textarea 
   } from '@chakra-ui/react'
 import HeaderTopBar from "../HeaderTopBar";
-import style from './simpleProduct-styles.module.css'
 
+import style from './ConfigurableProduct-styles.module.css'
 
-const SimpleProductForm = ()=>{
+const ConfigurableProduct = ()=>{
     const [nome, setNome] = useState('')
     const [description, setDescription] = useState('')
-    const [value, setValue] = useState('')
+    const [value, setValue] = useState('')    
+    const [size, setSize] = useState('')
+    const [color, setColor] = useState('')
  
-    const simple_prodcut =   {
-        "name": "ooo 221",
-        "description": "Agrupado",
-        "value": 311    
-    }
-    
-    const saveProduct = ()=>{
-        try{
-            fetch('http://localhost:3000/api/simple_product', {
-                method:'POST',
-                headers:{                  
-                     'Contente-Type': 'Application/json'
-                },
-                body: JSON.stringify(simple_prodcut)
-            })
-            .then((res)=>console.log('res', res))
-
-        }catch(error){
-            console.log(error)
-        }
-    }
-
-    
-    const isError = nome === '' || description === '' || value=== ''
-
-
+    const isError = nome === '' || description === '' || value === '' || size === '' || color === '' 
     
   return (
     <>
         <HeaderTopBar/>
-        <div className={style.simpleProduct_form}>
-            <h3>Cadastro- Item Simples</h3>
+        <div className={style.configurableProduct_form}>
+            <h3>Cadastro- Item Configurável</h3>
             <FormControl isInvalid={isError} style={{ margin:'auto auto', width:'100%' }}>
                 <FormLabel>Nome</FormLabel>
                 <Input type='text' placeholder="Nome do produto" value={nome} onChange={(e) => setNome(e.target.value) } />
@@ -57,13 +34,18 @@ const SimpleProductForm = ()=>{
                 
                 <FormLabel>Valor</FormLabel>
                 <Input  type='number'  placeholder="Valor do produto"  value={value} onChange={(e) => setValue(e.target.value) } />
+                
+                <FormLabel>Tamanho</FormLabel>
+                <Input  type='text'  placeholder="Tamanho do produto"  value={size} onChange={(e) => setSize(e.target.value) } />
+                
+                <FormLabel>Cor</FormLabel>
+                <Input  type='text'  placeholder="Cor do produto"  value={color} onChange={(e) => setColor(e.target.value) } />
 
                 { !isError && (
                     <Button
                     mt={8}
                     colorScheme='teal'                
                     type='submit'
-                    onClick={saveProduct}
                     >
                     Cadastrar
                     </Button>
@@ -76,7 +58,6 @@ const SimpleProductForm = ()=>{
                             colorScheme='teal'                
                             type='submit'
                             isDisabled={true}
-                         
                         >   
                         Cadastrar
                         </Button>
@@ -92,4 +73,4 @@ const SimpleProductForm = ()=>{
   )
 }
 
-export default SimpleProductForm
+export default ConfigurableProduct
