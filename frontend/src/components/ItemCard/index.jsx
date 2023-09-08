@@ -24,7 +24,7 @@ const ItemCard = (props)=>{
                     {props.description}
                 </p>
                 <div className={style.cardItem_type}>
-                    <span class="material-symbols-outlined">fiber_manual_record</span>
+                    <span className="material-symbols-outlined">fiber_manual_record</span>
                     <div className={style.cardItem_type__definition}>
                         {props.type}
                     </div>
@@ -34,12 +34,13 @@ const ItemCard = (props)=>{
 
             {isOpenCard &&(
                 <ItemCardModal
-                    isOpen={isOpenCard}
-                    onClose={closeModalItem}
+                    id={props.id}
                     name={props.name}
                     description={props.description}
                     type={props.type}
                     value={props.value}
+                    isOpen={isOpenCard}
+                    onClose={closeModalItem}
                 />
             )}
 

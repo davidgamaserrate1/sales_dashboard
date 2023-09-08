@@ -5,40 +5,6 @@ import style from './home-styles.module.css'
 import AddProduct from "../../components/AddProduct";
 
  
-// const items =[
-
-//     {
-//         "name": "1 Teste 1",
-//         "description": "descrição completa do item",
-//         "type": "Producto Simples",
-//         "value": "100",
-//     },
-//     {
-//         "name": "Teste 2",
-//         "description": "descrição completa do item",
-//         "type": "Producto Digital",
-//         "value": "100",
-//     },
-//     {
-//         "name": "Teste 3",
-//         "description": "descrição completa do item",
-//         "type": "Producto Simples",
-//         "value": "300",
-//     },
-//     {
-//         "name": "Teste 4",
-//         "description": "descrição completa do item",
-//         "type": "Producto Configuravel",
-//         "value": "100",
-//     },
-//     {
-//         "name": "Teste 5",
-//         "description": "descrição completa do item",
-//         "type": "Producto Simples",
-//         "value": "100",
-//     },
-// ]
-
 const Home = ()=>{
     const [items, setItems]=useState([])
     
@@ -59,6 +25,8 @@ const Home = ()=>{
             <div className={style.items_container}>
                 {items.map((item)=>(
                     <ItemCard 
+                        key={item.id + item.name}
+                        id={item.id}
                         name ={item.name}
                         description={item.description}
                         type={item.type}

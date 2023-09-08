@@ -30,6 +30,7 @@ export class SimpleProductService{
         return this.prisma.simpleProduct.update({
             where:{id: Number(id)},
             data:{
+                name:data.name,
                 description:data.description, 
                 value:data.value
             }

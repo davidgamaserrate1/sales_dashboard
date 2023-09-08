@@ -9,7 +9,7 @@ const HeaderTopBar = (porps)=>{
             </header>        
             
             <a href="/" className={style.header_top__home}>
-                <span class="material-symbols-outlined">home</span> Incio
+                <span className="material-symbols-outlined">home</span> Incio
             </a>
         </>
     )
