@@ -17,7 +17,13 @@ export class SimpleProductService{
     }
 
     async createSimpleProduct(data: SimpleProduct): Promise<SimpleProduct>{
-        return this.prisma.simpleProduct.create({data})
+        return this.prisma.simpleProduct.create({
+            data: {
+              name: data.name,
+              description: data.description,
+              value: data.value, 
+            },
+          });
     }
 
     async updateSimpleProduct(id:Number, data:SimpleProduct): Promise<SimpleProduct>{
