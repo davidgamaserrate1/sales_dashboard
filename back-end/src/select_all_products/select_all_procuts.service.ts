@@ -38,7 +38,7 @@ export class SelectAllProductsService {
     FROM
         public."DigitalProduct"  
 
-    ORDER BY type;
+    ORDER BY id desc;
         `;
 
     return productsList;
