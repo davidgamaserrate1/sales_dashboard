@@ -25,6 +25,7 @@ export class DigitalProductService{
         return this.prisma.DigitalProduct.update({
             where:{id: Number(id)},
             data:{
+                name: data.name,
                 description: data.description,
                 value: data.value,
                 linkDownload: data.linkDownload,

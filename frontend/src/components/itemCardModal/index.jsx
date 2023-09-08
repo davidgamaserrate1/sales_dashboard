@@ -4,11 +4,11 @@ import {
   ModalContent,
 } from '@chakra-ui/react'
 import ModalBodySimpleProduct from '../ModalBodySimpleProduct'
+import ModalBodyDigitalProduct from '../ModalBodyDigitalProduct'
 
 
 const ItemCardModal = (props) =>{       
   const admin = true
-
   return (
       props.type && (
       <Modal isOpen={props.isOpen} onClose={props.onClose} isCentered>
@@ -27,7 +27,7 @@ const ItemCardModal = (props) =>{
             />
           }         
           {props.type ==="Produto Digital" &&
-            <ModalBodySimpleProduct
+            <ModalBodyDigitalProduct
               id={props.id}
               isAdmin={admin}
               name={props.name}

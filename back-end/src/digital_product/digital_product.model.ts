@@ -6,4 +6,5 @@ export class DigitalProduct implements Prisma.SimpleProductCreateInput{
     description?: string;
     value: number;
     linkDownload: string;
+    name: string;
 }

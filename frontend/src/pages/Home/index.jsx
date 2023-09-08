@@ -17,11 +17,9 @@ const Home = ()=>{
 
     return(
         <>
-            <HeaderTopBar 
-            location="home">                       
+            <HeaderTopBar>                       
             </HeaderTopBar>
             <AddProduct/>
-          
             <div className={style.items_container}>
                 {items.map((item)=>(
                     <ItemCard 

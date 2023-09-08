@@ -1,46 +1,39 @@
 import { Button, FormLabel, Input, ModalBody, ModalCloseButton, ModalFooter, ModalHeader, Textarea,  useToast } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import style from './modalBodySimpleProduct-styles.module.css'
+import style from './modalBodyDigitalProduct-styles.module.css'
 import icon from '../../assets/icons-produtos.svg'
 
-
-
-const ModalBodySimpleProduct =(props)=>{
+const ModalBodyDigitalProduct =(props)=>{
     const id = props.id
-    const [notModify, setNotModify] = useState(true)
-    const [name, setName] = useState(props.name)
-    const [description, setDescription] = useState(props.description)    
-    const [value, setValue] = useState(props.value)
-    const [linkDownload, setLinkDownload] = useState(props.linkDownload)
+
+    const [item, setItem] = useState()
+    const [name, setName] = useState()
+    const [description, setDescription] = useState()    
+    const [value, setValue] = useState()
+    const [linkDownload, setLinkDownload] = useState()
     
     const toast = useToast()
-    
-    const item = {
-        id,
-        name, 
-        description,
-        value
-    }
 
     useEffect(()=>{
-        const receiveditem = {
-            id:  props.id,
-            name : props.name, 
-            description : props.description,
-            value : props.value
-        }
+        fetch(`http://localhost:4000/api/digital_product/${id}`)
+        .then((res)=>res.json())
+        .then((response)=>{
+            setItem(response)
+            setName(response.name)
+            setDescription(response.description)
+            setValue(response.value)
+            setLinkDownload(response.linkDownload)
 
-        let isModified = receiveditem.name === item.name && 
-                receiveditem.description === item.description && 
-                receiveditem.value === item.value;
-        setNotModify(isModified)
-    },[props.id, props.name, props.description, props.value, item.name, item.description, item.value]);
+        })
+        
+    },[id]);
  
     async function updateSimpleItem(item){
         const sendItem = {
-            name : item.name, 
-            description : item.description,
-            value : parseFloat(item.value)
+            name : name, 
+            description : description,
+            value : parseFloat(value),
+            linkDownload : linkDownload
         }
         
         await fetch(`http://localhost:4000/api/digital_product/${item.id}`, {
@@ -51,17 +44,15 @@ const ModalBodySimpleProduct =(props)=>{
             body:JSON.stringify(sendItem)
         })
         .then((res)=>res.json())
-        .then(()=>{
+        .then(()=>{            
             toast({
                 title: 'Produto atualizado com sucesso!',                 
                 status: 'success',
                 duration: 4000,
                 isClosable: true,
             })
-            props.onClose()
-            
+            props.onClose()            
         })
-        
     }
 
     
@@ -95,13 +86,19 @@ const ModalBodySimpleProduct =(props)=>{
                 </div>
                 </div>                
                
+                <FormLabel>Link do produto </FormLabel>
+                <Input 
+                    type="text"
+                    value={linkDownload}
+                    onChange={(e)=>setLinkDownload(e.target.value)}
+                />
                 <FormLabel>Valor do produdo </FormLabel>
                 <Input 
                     value={value}
                     onChange={(e)=>setValue(e.target.value)}
                 />
                  <ModalFooter>
-                   { !notModify && <Button colorScheme='green' onClick={()=>updateSimpleItem(item)}>Atualizar</Button>}
+                   <Button colorScheme='green' onClick={()=>updateSimpleItem(item)}>Atualizar</Button>
                 </ModalFooter>
             </ModalBody>
             </>
@@ -140,4 +137,4 @@ const ModalBodySimpleProduct =(props)=>{
     
 }
 
-export default ModalBodySimpleProduct
+export default ModalBodyDigitalProduct
