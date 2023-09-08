@@ -5,20 +5,57 @@ import {
     FormControl,
     FormLabel,
     FormErrorMessage,
-    Input, Button,Textarea 
+    Input, Button,Textarea, useToast 
   } from '@chakra-ui/react'
 import HeaderTopBar from "../HeaderTopBar";
 
 import style from './ConfigurableProduct-styles.module.css'
+import { useNavigate } from "react-router-dom";
 
 const ConfigurableProduct = ()=>{
-    const [nome, setNome] = useState('')
+    const [name, setName] = useState('')
     const [description, setDescription] = useState('')
+     
     const [value, setValue] = useState('')    
     const [size, setSize] = useState('')
     const [color, setColor] = useState('')
- 
-    const isError = nome === '' || description === '' || value === '' || size === '' || color === '' 
+
+    const toast = useToast()
+    const navigate = useNavigate()
+    
+    async function saveProduct  () {        
+        const configurable_prodcut =   {
+            "name": name,
+            "description": description,
+            "value":  parseFloat(value),
+            "size" : size,
+            "color" : color,
+        }
+        console.log(configurable_prodcut)
+    
+        try {
+         await fetch('http://localhost:4000/api/configurable_product', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json' 
+            },
+            body: JSON.stringify(configurable_prodcut)
+          })
+          .then((res) => {
+            toast({
+                title: 'Produto criado com sucesso!',                 
+                status: 'success',
+                duration: 4000,
+                isClosable: true,
+              })
+            navigate('/')
+        });
+        } catch (error) {
+          console.log(error);
+        }
+      }
+
+    const isError = name === '' || description === '' || value === '' || size === '' || color === '' 
     
   return (
     <>
@@ -27,7 +64,7 @@ const ConfigurableProduct = ()=>{
             <h3>Cadastro- Item Configurável</h3>
             <FormControl isInvalid={isError} style={{ margin:'auto auto', width:'100%' }}>
                 <FormLabel>Nome</FormLabel>
-                <Input type='text' placeholder="Nome do produto" value={nome} onChange={(e) => setNome(e.target.value) } />
+                <Input type='text' placeholder="Nome do produto" value={name} onChange={(e) => setName(e.target.value) } />
                 
                 <FormLabel>Descrição</FormLabel>
                 <Textarea type='text' placeholder="Descrição do produto"  value={description} onChange={(e) => setDescription(e.target.value) } />
@@ -46,6 +83,7 @@ const ConfigurableProduct = ()=>{
                     mt={8}
                     colorScheme='teal'                
                     type='submit'
+                    onClick={saveProduct}
                     >
                     Cadastrar
                     </Button>
