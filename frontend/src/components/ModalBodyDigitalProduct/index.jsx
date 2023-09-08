@@ -11,6 +11,8 @@ const ModalBodySimpleProduct =(props)=>{
     const [name, setName] = useState(props.name)
     const [description, setDescription] = useState(props.description)    
     const [value, setValue] = useState(props.value)
+    const [linkDownload, setLinkDownload] = useState(props.linkDownload)
+    
     const toast = useToast()
     
     const item = {
@@ -41,7 +43,7 @@ const ModalBodySimpleProduct =(props)=>{
             value : parseFloat(item.value)
         }
         
-        await fetch(`http://localhost:4000/api/simple_product/${item.id}`, {
+        await fetch(`http://localhost:4000/api/digital_product/${item.id}`, {
             method:'PUT',
             headers: {
                 'Content-Type': 'application/json' 

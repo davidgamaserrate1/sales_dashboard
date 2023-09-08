@@ -26,6 +26,17 @@ const ItemCardModal = (props) =>{
               onClose={props.onClose}
             />
           }         
+          {props.type ==="Produto Digital" &&
+            <ModalBodySimpleProduct
+              id={props.id}
+              isAdmin={admin}
+              name={props.name}
+              description={props.description}
+              type={props.type}             
+              value={props.value}
+              onClose={props.onClose}
+            />
+          }         
          
         </ModalContent>
       </Modal>)  
