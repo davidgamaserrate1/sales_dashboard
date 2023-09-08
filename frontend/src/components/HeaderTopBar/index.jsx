@@ -7,6 +7,7 @@ const HeaderTopBar = (porps)=>{
             <header className={style.header_top}>
                 {porps.children}
             </header>        
+            
             <a href="/" className={style.header_top__home}>
                 <span class="material-symbols-outlined">home</span> Incio
             </a>

@@ -2,8 +2,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: calc(100vw - 100px);
+    max-width: 1500px;
     flex-wrap: wrap;
-    margin: 50px ;
-    gap: 50px;
+    margin: auto auto ;
+    gap: 40px;
 }
