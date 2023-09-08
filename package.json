@@ -3,7 +3,8 @@
     "version": "1.0.0",
     "description": "Projeto prova imagetech",
     "scripts": {
-        "start": "concurrently \"cd frontend && npm start\" \"cd back-end && npm run start:dev\""
+        "start": "concurrently \"cd frontend && npm start\" \"cd back-end && npm run start:dev\"",
+        "install": "cd front-end && npm install && cd ../back-end && npm install"
     },
     "keywords": [],
     "author": "",
