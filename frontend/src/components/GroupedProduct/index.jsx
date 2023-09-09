@@ -16,13 +16,20 @@ const GroupedProductForm = ()=>{
     const [name, setName] = useState('')
     const [description, setDescription] = useState('')
     const [value, setValue] = useState('')    
-    const [size, setSize] = useState('')
     const [color, setColor] = useState('')
     const [listSimpleProducs, setListSimpleProducs] =useState([])
     const toast = useToast()
     const navigate = useNavigate()
-         
-     
+      
+    const [produtosSelecionados, setProdutosSelecionados] = useState([]);
+    
+    const handleSelecaoProduto = (product) => {
+      if (produtosSelecionados.includes(product)) {    
+        setProdutosSelecionados(produtosSelecionados.filter((p) => p !== product));
+      } else {        
+        setProdutosSelecionados([...produtosSelecionados, product]);
+      }
+    };
 
     useEffect(()=>{
       fetch('http://localhost:4000/api/simple_product')
@@ -35,26 +42,31 @@ const GroupedProductForm = ()=>{
         )         
       })
     },[])
-    console.log(listSimpleProducs)
+     
     
-    async function saveProduct  () {        
-        const configurable_prodcut =   {
-            "name": name,
-            "description": description,
-            "value":  parseFloat(value),
-            "size" : size,
-            "color" : color,
-        }       
+    async function saveProduct  () { 
+
+        const grouped_item = {
+          "name": name,
+          "description": description,
+          "value": parseFloat(value),
+          "simpleItems": {
+            "connect": 
+            produtosSelecionados
+            
+          }
+        }    
     
         try {
-         await fetch('http://localhost:4000/api/configurable_product', {
+         await fetch('http://localhost:4000/api/grouped_product', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json' 
             },
-            body: JSON.stringify(configurable_prodcut)
+            body: JSON.stringify(grouped_item)
           })
           .then((res) => {
+            res.json()
             toast({
                 title: 'Produto criado com sucesso!',                 
                 status: 'success',
@@ -62,13 +74,15 @@ const GroupedProductForm = ()=>{
                 isClosable: true,
               })
             navigate('/')
-        });
+        })
+        .then((response)=>console.log(response))
+
         } catch (error) {
           console.log(error);
         }
       }
 
-    const isError = name === '' || description === '' || value === '' || size === '' || color === '' 
+    const isError = false
     
   return (
     <>
@@ -93,9 +107,13 @@ const GroupedProductForm = ()=>{
                     listSimpleProducs
                       .sort((a, b) => a.name.localeCompare(b.name)) 
                       .map((product)=>(
-                        <Checkbox className={style.configurableProduct_form__list_simple_item}>
+                        <Checkbox className={style.configurableProduct_form__list_simple_item}
+                          checked={produtosSelecionados.includes(product)}
+                          onChange={() => handleSelecaoProduto(product)}
+                        >
                           {product.name}
                         </Checkbox>
+                        
                       ))
                   )}                  
                 </div>
