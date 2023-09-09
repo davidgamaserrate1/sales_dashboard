@@ -6,6 +6,7 @@ import {
 import ModalBodySimpleProduct from '../ModalBodySimpleProduct'
 import ModalBodyDigitalProduct from '../ModalBodyDigitalProduct'
 import ModalBodyConfigurableProduct from '../ModalBodyConfigurableProduct'
+import ModalBodyGroupedProduct from '../ModalBodyGroupedProduct'
 
 
 const ItemCardModal = (props) =>{       
@@ -40,6 +41,17 @@ const ItemCardModal = (props) =>{
           }         
           {props.type ==="Produto Configurável" &&
             <ModalBodyConfigurableProduct
+              id={props.id}
+              isAdmin={admin}
+              name={props.name}
+              description={props.description}
+              type={props.type}             
+              value={props.value}
+              onClose={props.onClose}
+            />
+          }         
+          {props.type ==="Produto Agrupado" &&
+            <ModalBodyGroupedProduct
               id={props.id}
               isAdmin={admin}
               name={props.name}

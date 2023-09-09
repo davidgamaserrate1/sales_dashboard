@@ -28,7 +28,7 @@ export class GroupedProductController{
     }
 
     @Put(':id')
-    async editGroupedProduct(@Param('id') id:number, putData:GroupedProduct):Promise<GroupedProduct>{
+    async editGroupedProduct(@Param('id') id:number, @Body() putData:GroupedProduct):Promise<GroupedProduct>{
       return this.groupedProduct.updateGroupedProduct(id, putData)
     }
  

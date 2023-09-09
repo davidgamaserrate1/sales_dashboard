@@ -37,6 +37,16 @@ export class SelectAllProductsService {
         'Produto Digital' type    
     FROM
         public."DigitalProduct"  
+    
+    UNION ALL
+
+    SELECT 
+		id,
+		name ,   
+		description,
+		value,
+		'Produto Agrupado' type  
+	FROM public."GroupedProduct"
 
     ORDER BY type desc, id desc;
         `;
