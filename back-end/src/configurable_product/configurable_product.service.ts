@@ -23,8 +23,9 @@ export class ConfigurableProductService{
         return this.prisma.configurableProduct.update({
             where: {id: Number(id)},
             data:{
+                name: data.name,
                 description: data.description,
-                value: data.value,
+                value: (data.value),
                 size: data.size,
                 color: data.color
             }

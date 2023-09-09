@@ -29,7 +29,7 @@ export class ConfigurableProductController{
     }
 
     @Put(':id')
-    async editConfigurableProduct(@Param('id') id:number, putData:ConfigurableProduct):Promise<ConfigurableProduct>{
+    async editConfigurableProduct(@Param('id') id:number,  @Body()  putData:ConfigurableProduct):Promise<ConfigurableProduct>{
         return this.configurableProduct.updateConfigurableProduct(id,putData)
     }
 }

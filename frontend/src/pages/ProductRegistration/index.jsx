@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import SimpleProductForm from "../../components/SimpleProductForm";
 import DigitalProduct from "../../components/DigitalProductForm";
 import ConfigurableProduct from "../../components/ConfigurableProduct";
+import GroupedProductForm from "../../components/GroupedProduct";
 
 
 const ProductRegistration = (props)=>{
@@ -35,6 +36,7 @@ const ProductRegistration = (props)=>{
             {simple_product && (<SimpleProductForm/>)}
             {digital_product && (<DigitalProduct/>)}
             {configurable_product && (<ConfigurableProduct/>)}
+            {grouped_product && (<GroupedProductForm/>)}
              
                   
              

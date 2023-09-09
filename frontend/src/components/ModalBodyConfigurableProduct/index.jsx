@@ -1,29 +1,50 @@
 import { Button, FormLabel, Input, ModalBody, ModalCloseButton, ModalFooter, ModalHeader, Textarea,  useToast } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import style from './modalBodyDigitalProduct-styles.module.css'
+import style from './modalBodyConfigurableProduct-styles.module.css'
 import icon from '../../assets/icons-produtos.svg'
 
-const ModalBodyDigitalProduct =(props)=>{
+
+// async function updateSimpleItem(item){
+    
+    
+//     await fetch(`http://localhost:4000/api/configurable_product/5`, {
+//         method:'PUT',
+//         headers: {
+//             'Content-Type': 'application/json' 
+//           },
+//         body:JSON.stringify(item)
+//     })
+//     .then((res)=>res.json())
+//     .then((resp)=>{   
+//         console.log(resp)           
+//     })
+// }
+
+
+const ModalBodyConfigurableProduct =(props)=>{
     const id = props.id
 
     const [item, setItem] = useState()
     const [name, setName] = useState()
     const [description, setDescription] = useState()    
     const [value, setValue] = useState()
-    const [linkDownload, setLinkDownload] = useState()
+    const [size, setSize] = useState()
+    const [color, setColor] = useState()
+    
     
     const toast = useToast()
 
     useEffect(()=>{
-        fetch(`http://localhost:4000/api/digital_product/${id}`)
-        .then((res)=>res.json())
+        fetch(`http://localhost:4000/api/configurable_product/${id}`)
+        .then((res)=> res.json())
         .then((response)=>{
+            console.log(response)
             setItem(response)
             setName(response.name)
             setDescription(response.description)
             setValue(response.value)
-            setLinkDownload(response.linkDownload)
-
+            setSize(response.size)
+            setColor(response.color)
         })
         
     },[id]);
@@ -33,10 +54,12 @@ const ModalBodyDigitalProduct =(props)=>{
             name : name, 
             description : description,
             value : parseFloat(value),
-            linkDownload : linkDownload
+            size : size, 
+            color : color
         }
+        console.log(JSON.stringify(sendItem))
         
-        await fetch(`http://localhost:4000/api/digital_product/${item.id}`, {
+        await fetch(`http://localhost:4000/api/configurable_product/${id}`, {
             method:'PUT',
             headers: {
                 'Content-Type': 'application/json' 
@@ -57,10 +80,9 @@ const ModalBodyDigitalProduct =(props)=>{
     
     return(
     <>
-        {props.isAdmin?(
+        {!props.isAdmin ?(
             <>
-            <ModalHeader>
-                
+            <ModalHeader>                
                 <FormLabel>Nome do produdo </FormLabel>
                 <Input 
                     className={style.cardItem_name}
@@ -84,11 +106,17 @@ const ModalBodyDigitalProduct =(props)=>{
                 </div>
                 </div>                
                
-                <FormLabel>Link do produto </FormLabel>
+                <FormLabel>Tamanho do produto </FormLabel>
                 <Input 
                     type="text"
-                    value={linkDownload}
-                    onChange={(e)=>setLinkDownload(e.target.value)}
+                    value={size}
+                    onChange={(e)=>setSize(e.target.value)}
+                />
+                <FormLabel>Cor do produto </FormLabel>
+                <Input 
+                    type="text"
+                    value={color}
+                    onChange={(e)=>setColor(e.target.value)}
                 />
                 <FormLabel>Valor do produdo </FormLabel>
                 <Input 
@@ -105,23 +133,35 @@ const ModalBodyDigitalProduct =(props)=>{
             <>
             <ModalHeader>
                 <h2 className={style.cardItem_name}>
-                {props.name}
+                    {name}
                 </h2>
                 <img className={style.cardItem_icon} src={icon} alt='icone do produto'/>
-                </ModalHeader>
+            </ModalHeader>
             <ModalCloseButton />
             <ModalBody>
-                <p>
-                {props.description}
-                </p>
-                <div className={style.cardItem_type}>
-                <span className="material-symbols-outlined">fiber_manual_record</span>
-                <div className={style.cardItem_type__definition}>
-                    {props.type}
-                </div>
-                </div>
                 <div>
-                R${props.value}
+                    <p>
+                        {props.description}
+                    </p>
+                    <div className={style.cardItem_type}>
+                        <span className="material-symbols-outlined">fiber_manual_record</span>                    
+                        <div className={style.cardItem_type__definition}>
+                            {props.type}
+                        </div>                    
+                    </div>
+
+                    <div  className={style.cardItem_info}>
+                        <div className={style.cardItem_info__value}>
+                            {size}                    
+                        </div>
+                        <div className={style.cardItem_info__value}>
+                            {color}
+                        </div>
+                    </div>
+
+                    <div>
+                        R${value}
+                    </div>
                 </div>
                 <ModalFooter>
                   <Button colorScheme='green' >Comprar</Button> 
@@ -135,4 +175,4 @@ const ModalBodyDigitalProduct =(props)=>{
     
 }
 
-export default ModalBodyDigitalProduct
+export default ModalBodyConfigurableProduct

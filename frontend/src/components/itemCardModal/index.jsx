@@ -5,6 +5,7 @@ import {
 } from '@chakra-ui/react'
 import ModalBodySimpleProduct from '../ModalBodySimpleProduct'
 import ModalBodyDigitalProduct from '../ModalBodyDigitalProduct'
+import ModalBodyConfigurableProduct from '../ModalBodyConfigurableProduct'
 
 
 const ItemCardModal = (props) =>{       
@@ -28,6 +29,17 @@ const ItemCardModal = (props) =>{
           }         
           {props.type ==="Produto Digital" &&
             <ModalBodyDigitalProduct
+              id={props.id}
+              isAdmin={admin}
+              name={props.name}
+              description={props.description}
+              type={props.type}             
+              value={props.value}
+              onClose={props.onClose}
+            />
+          }         
+          {props.type ==="Produto Configurável" &&
+            <ModalBodyConfigurableProduct
               id={props.id}
               isAdmin={admin}
               name={props.name}

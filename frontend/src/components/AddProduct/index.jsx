@@ -45,7 +45,8 @@ const AddProduct = ()=>{
                     </Tooltip>
                 </MenuItem>
                 <MenuItem className={style.menu_item}>
-                    Produto Agrupado
+                    <a href="/registration/grouped"> Produto Agrupado</a> 
+                    
                     <Tooltip label="caracterizado por ser a reunião (o agrupamento) de produtos simples" aria-label='A tooltip'>
                        <span className="material-symbols-outlined">
                             help

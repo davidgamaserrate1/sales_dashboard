@@ -1,0 +1,28 @@
+ 
+.cardItem_icon{
+    justify-content: center;
+    align-self: center;
+    align-items: center;
+    display: flex;
+     margin: auto  auto;
+}
+.cardItem_type{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.cardItem_type__definition{
+    font-style: italic;
+    font-weight: lighter;
+}
+
+ 
+
+.cardItem_name{
+    text-align: center;
+    
+}
+
+ 
