@@ -5,7 +5,7 @@ import {
     FormControl,
     FormLabel,
     FormErrorMessage,
-    Input, Button,Textarea, useToast 
+    Input, Button,Textarea, useToast, Checkbox, Divider 
   } from '@chakra-ui/react'
 import HeaderTopBar from "../HeaderTopBar";
 
@@ -15,28 +15,27 @@ import { useNavigate } from "react-router-dom";
 const GroupedProductForm = ()=>{
     const [name, setName] = useState('')
     const [description, setDescription] = useState('')
-    const [simpleProducts, setSimpleProducts ] =useState()
     const [value, setValue] = useState('')    
     const [size, setSize] = useState('')
     const [color, setColor] = useState('')
-
+    const [listSimpleProducs, setListSimpleProducs] =useState([])
     const toast = useToast()
     const navigate = useNavigate()
          
-    let listSimpleProducs=[]
+     
 
     useEffect(()=>{
       fetch('http://localhost:4000/api/simple_product')
       .then((res)=> res.json())
       .then((response)=>{
-        listSimpleProducs= response.map((product)=> ({
+        setListSimpleProducs(response.map((product)=> ({
            id: product.id,
            name: product.name
-        } )) 
-        console.log(listSimpleProducs )
-        //setSimpleProducts(response)
+        } ))  
+        )         
       })
     },[])
+    console.log(listSimpleProducs)
     
     async function saveProduct  () {        
         const configurable_prodcut =   {
@@ -45,8 +44,7 @@ const GroupedProductForm = ()=>{
             "value":  parseFloat(value),
             "size" : size,
             "color" : color,
-        }
-        console.log(configurable_prodcut)
+        }       
     
         try {
          await fetch('http://localhost:4000/api/configurable_product', {
@@ -87,12 +85,21 @@ const GroupedProductForm = ()=>{
                 <FormLabel>Valor</FormLabel>
                 <Input  type='number'  placeholder="Valor do produto"  value={value} onChange={(e) => setValue(e.target.value) } />
                 
-                <FormLabel>Itens</FormLabel>
-                <div> 
-
+                <Divider/>
+                <FormLabel>Itens Simples</FormLabel>
+                <Divider/>
+                <div className={style.configurableProduct_form__list_simple}> 
+                  { listSimpleProducs && (
+                    listSimpleProducs
+                      .sort((a, b) => a.name.localeCompare(b.name)) 
+                      .map((product)=>(
+                        <Checkbox className={style.configurableProduct_form__list_simple_item}>
+                          {product.name}
+                        </Checkbox>
+                      ))
+                  )}                  
                 </div>
-                
-                
+                <Divider/>
 
                 { !isError && (
                     <Button

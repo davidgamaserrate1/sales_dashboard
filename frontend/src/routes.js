@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home/";
 import ProductRegistration from "./pages/ProductRegistration";
-import GroupedProductForm from "./components/GroupedProduct";
+
 
 const RoutesApp = ()=>{
     return(
