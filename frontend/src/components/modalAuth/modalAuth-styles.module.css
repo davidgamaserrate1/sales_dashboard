@@ -1,0 +1,17 @@
+.login_page{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F0F0F0;
+    width: 100vw;
+    height: 100vh;
+}
+
+.login_modal{
+    width: 466px;
+    height: 558px;
+    background-color: #FFF;
+    border: 1px solid #f5f5f5;
+    border-radius: 27px;
+    padding: 27px;    
+}
