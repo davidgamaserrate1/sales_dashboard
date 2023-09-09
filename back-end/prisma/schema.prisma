@@ -14,7 +14,8 @@ model SimpleProduct{
   name String?  @unique
   description String?
   value Int   
-  
+  groupedProducts GroupedProduct[]
+
 }
 
 model DigitalProduct{
@@ -35,7 +36,6 @@ model ConfigurableProduct {
   
 }
 
-
 model SelectAllProducts{
    id          Int       @id @default(autoincrement())
    name String?  @unique
@@ -43,20 +43,11 @@ model SelectAllProducts{
    value Int
    type String
 }
-// model Group {
-//   id         Int       @id @default(autoincrement())
-//   name       String?
-//   description String?
-//   value      Int
-//   group_itens GroupedProduct[]
-// }
 
-// model GroupedProduct {
-//   id              Int      @id @default(autoincrement())
-//   name            String?
-//   description     String?
-//   value           Int
-//   groupId         Int
-//   group           Group? @relation(fields: [groupId], references: [id])
-//   simpleProductId Int
-// }
+model GroupedProduct {
+  id          Int       @id @default(autoincrement())
+  name        String
+  description String
+  value       Float
+  simpleItems SimpleProduct[]
+}
