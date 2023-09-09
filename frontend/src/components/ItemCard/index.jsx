@@ -43,7 +43,7 @@ const ItemCard = (props)=>{
 
         }
 
-        console.log(url+id)
+       
     await fetch(url+id, {
         method:'DELETE'
     })
@@ -108,6 +108,7 @@ const ItemCard = (props)=>{
                     value={props.value}
                     isOpen={isOpenCard}
                     onClose={closeModalItem}
+                    linkDonwload={props.linkDonwload}
                 />
             )}
 

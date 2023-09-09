@@ -4,7 +4,7 @@
     "description": "Projeto prova imagetech",
     "scripts": {
         "start": "concurrently \"cd frontend && npm start\" \"cd back-end && npm run start:dev\"",
-        "install": "cd front-end && npm install && cd ../back-end && npm install"
+        "install": "cd frontend && npm install && cd ../back-end && npm install && npx prisma generate && npx prisma migrate dev "
     },
     "keywords": [],
     "author": "",
