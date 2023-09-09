@@ -10,7 +10,7 @@ import ModalBodyGroupedProduct from '../ModalBodyGroupedProduct'
 
 
 const ItemCardModal = (props) =>{       
-  const admin = true
+  const admin = false
   return (
       props.type && (
       <Modal isOpen={props.isOpen} onClose={props.onClose} isCentered>

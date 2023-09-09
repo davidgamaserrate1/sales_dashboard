@@ -5,7 +5,7 @@ import {
     FormControl,
     FormLabel,
     FormErrorMessage,
-    Input, Button,Textarea, useToast, Checkbox, Divider 
+    Input, Button,Textarea, useToast, Checkbox, Divider, Heading 
   } from '@chakra-ui/react'
 import HeaderTopBar from "../HeaderTopBar";
 
@@ -16,7 +16,6 @@ const GroupedProductForm = ()=>{
     const [name, setName] = useState('')
     const [description, setDescription] = useState('')
     const [value, setValue] = useState('')    
-    const [color, setColor] = useState('')
     const [listSimpleProducs, setListSimpleProducs] =useState([])
     const toast = useToast()
     const navigate = useNavigate()
@@ -41,7 +40,7 @@ const GroupedProductForm = ()=>{
         } ))  
         )         
       })
-    },[])
+    },[listSimpleProducs])
      
     
     async function saveProduct  () { 
@@ -82,13 +81,17 @@ const GroupedProductForm = ()=>{
         }
       }
 
-    const isError = false
+    const isError =  name === '' || description === '' || value=== '' || produtosSelecionados.length < 2
     
+    let message = 'Por favor, preencha todos os campos.'
+    
+    if(produtosSelecionados.length  < 2)
+      message = 'Por favor, selecione pelo menos 2 itens simples'
   return (
     <>
         <HeaderTopBar/>
         <div className={style.configurableProduct_form}>
-            <h3>Cadastro- Item Agrupado</h3>
+            <Heading   as='h2' size='md'>Cadastro- Item Agrupado</Heading>
             <FormControl isInvalid={isError} style={{ margin:'auto auto', width:'100%' }}>
                 <FormLabel>Nome</FormLabel>
                 <Input type='text' placeholder="Nome do produto" value={name} onChange={(e) => setName(e.target.value) } />
@@ -141,7 +144,7 @@ const GroupedProductForm = ()=>{
                         Cadastrar
                         </Button>
                         <FormErrorMessage>
-                            Por favor, preencha todos os campos.
+                            {message}
                         </FormErrorMessage>
                     </>
                     )}

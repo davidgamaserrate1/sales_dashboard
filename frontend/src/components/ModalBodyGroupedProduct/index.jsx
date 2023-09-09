@@ -1,5 +1,5 @@
 
-import { Box, Button, Divider, FormLabel, Input, ModalBody, ModalCloseButton, ModalFooter, ModalHeader, Textarea,  useToast } from "@chakra-ui/react";
+import { Box, Button,  FormLabel, Input, ModalBody, ModalCloseButton, ModalFooter, ModalHeader, Textarea,  useToast } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import style from './ModalBodyGroupedProduct-styles.module.css'
 import icon from '../../assets/icons-produtos.svg'
@@ -14,7 +14,6 @@ import {
 
 const ModalBodyGroupedProduct =(props)=>{
     const id = props.id
-    const [notModify, setNotModify] = useState(true)
     const [name, setName] = useState(props.name)
     const [description, setDescription] = useState(props.description)    
     const [value, setValue] = useState(props.value)
@@ -40,7 +39,7 @@ const ModalBodyGroupedProduct =(props)=>{
                 } )) 
             )               
         })         
-    },[id]);
+    },[props.id]);
  
     async function updateSimpleItem(item){
         const sendItem = {
@@ -49,7 +48,7 @@ const ModalBodyGroupedProduct =(props)=>{
             value : parseFloat(item.value)
         }
         
-        await fetch(`http://localhost:4000/api/simple_product/${item.id}`, {
+        await fetch(`http://localhost:4000/api/grouped_product/${item.id}`, {
             method:'PUT',
             headers: {
                 'Content-Type': 'application/json' 
@@ -107,7 +106,6 @@ const ModalBodyGroupedProduct =(props)=>{
                             </h2>
                             <AccordionPanel pb={4}>
                             {item.description}
-                            <Divider/>
                             </AccordionPanel>
                         </AccordionItem>
                     )))}
@@ -128,7 +126,7 @@ const ModalBodyGroupedProduct =(props)=>{
                     onChange={(e)=>setValue(e.target.value)}
                 />
                  <ModalFooter>
-                   { !notModify && <Button colorScheme='green' onClick={()=>updateSimpleItem(item)}>Atualizar</Button>}
+                    <Button colorScheme='green' onClick={()=>updateSimpleItem(item)}>Atualizar</Button>
                 </ModalFooter>
             </ModalBody>
             </>
@@ -146,6 +144,29 @@ const ModalBodyGroupedProduct =(props)=>{
                 <p>
                 {props.description}
                 </p>
+                {itens_associados.length > 0 && (
+                <>
+                <FormLabel mt={4}> Produtos associados </FormLabel>      
+                
+                <Accordion allowToggle>
+                    {itens_associados.map((item=>(                        
+                        <AccordionItem>
+                            <h2>
+                            <AccordionButton>
+                                <Box as="span" flex='1' textAlign='left'>
+                                {item.name}
+                                </Box>
+                                <AccordionIcon />
+                            </AccordionButton>
+                            </h2>
+                            <AccordionPanel pb={4}>
+                            {item.description}
+                            </AccordionPanel>
+                        </AccordionItem>
+                    )))}
+                
+                </Accordion>   
+                </> )}
                 <div className={style.cardItem_type}>
                 <span className="material-symbols-outlined">fiber_manual_record</span>
                 <div className={style.cardItem_type__definition}>

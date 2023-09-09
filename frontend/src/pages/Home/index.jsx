@@ -12,7 +12,7 @@ const Home = ()=>{
         fetch('http://localhost:4000/api/list_products')
         .then((res)=>res.json())
         .then((items)=>setItems(items))
-    })
+    },[items])
     
 
     return(

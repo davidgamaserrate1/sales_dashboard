@@ -11,7 +11,7 @@ const ItemCard = (props)=>{
     const [isOpenCard, setIsOpenCard] = useState(false);  
     const { isOpen, onOpen, onClose } = useDisclosure();
     const toast =useToast()
-    const isAdmin = true
+    const isAdmin = false
 
     const openModalProduct = () => {
         setIsOpenCard(true);
@@ -34,8 +34,8 @@ const ItemCard = (props)=>{
         case 'Produto Configurável':
             url+='/configurable_product/'
             break;
-        case 'grouped':
-            url+='http://localhost:4000/'
+        case 'Produto Agrupado':
+            url+='/grouped_product/'
             break; 
         default:
             url+='http://localhost:4000/';

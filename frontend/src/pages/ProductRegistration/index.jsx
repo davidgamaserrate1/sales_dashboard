@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import SimpleProductForm from "../../components/SimpleProductForm";
 import DigitalProduct from "../../components/DigitalProductForm";
-import ConfigurableProduct from "../../components/ConfigurableProduct";
-import GroupedProductForm from "../../components/GroupedProduct";
+import ConfigurableProduct from "../../components/ConfigurableProductForm";
+import GroupedProductForm from "../../components/GroupedProductForm";
 
 
 const ProductRegistration = (props)=>{
@@ -29,18 +29,15 @@ const ProductRegistration = (props)=>{
             default:
                 setSimple_product(false)
           }
-    },[])
+    },[props.typeRegister])
     
       return (
-        <div>
-            {simple_product && (<SimpleProductForm/>)}
-            {digital_product && (<DigitalProduct/>)}
-            {configurable_product && (<ConfigurableProduct/>)}
-            {grouped_product && (<GroupedProductForm/>)}
-             
-                  
-             
-        </div>
+        <>
+          {simple_product && (<SimpleProductForm/>)}
+          {digital_product && (<DigitalProduct/>)}
+          {configurable_product && (<ConfigurableProduct/>)}
+          {grouped_product && (<GroupedProductForm/>)}
+        </>
     )
 }
 

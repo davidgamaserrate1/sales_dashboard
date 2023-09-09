@@ -5,7 +5,7 @@ import {
     FormControl,
     FormLabel,
     FormErrorMessage,
-    Input, Button,Textarea, useToast 
+    Input, Button,Textarea, useToast, Heading 
   } from '@chakra-ui/react'
 import HeaderTopBar from "../HeaderTopBar";
 import style from './simpleProduct-styles.module.css'
@@ -54,8 +54,8 @@ const SimpleProductForm = ()=>{
   return (
     <>
         <HeaderTopBar/>
-        <div className={style.simpleProduct_form}>
-            <h3>Cadastro- Item Simples</h3>
+        <div className={style.simpleProduct_form}>            
+            <Heading   as='h2' size='md'>Cadastro - Item Simples</Heading>
             <FormControl isInvalid={isError} style={{ margin:'auto auto', width:'100%' }}>
                 <FormLabel>Nome</FormLabel>
                 <Input type='text' placeholder="Nome do produto" value={name} onChange={(e) => setName(e.target.value) } />
