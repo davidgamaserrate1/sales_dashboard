@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import style from './login-styles.module.css'
 import ModalAuth from "../../components/modalAuth";
-import { Button, FormControl, FormErrorMessage, Heading, Input, useToast } from "@chakra-ui/react";
+import { Button, Checkbox, FormControl, FormErrorMessage, Heading, Input, useToast } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 
 const Login = () =>{
     const [username, setUsername] =useState('')
     const [password, setPassword]=useState('')
+    const [isAdmin, setIsAdmin]=useState(false)
     const [confirmPassword, setConfirmPassword] = useState('')
 
-    
     const toast = useToast()
     const navigate = useNavigate()
 
@@ -18,7 +18,8 @@ const Login = () =>{
     const handleRegister = async()=>{
         const credentialsRegister ={
             username,
-            password
+            password,
+            isAdmin
         }
 
         await fetch('http://localhost:4000/auth/register', {
@@ -65,6 +66,11 @@ const Login = () =>{
                     <FormErrorMessage>
                    As senhas nao correspondem
                 </FormErrorMessage>
+                
+                <Checkbox style={{border:'1px solid #f0f0f0',width:'100%', padding:'4px'}} mt={4} colorScheme='green'
+                value={isAdmin}
+                onChange={(e)=>setIsAdmin(e.target.checked)}
+                >Cadastro de administrador</Checkbox>
                 <Button
                     mt={8}
                     colorScheme='teal'

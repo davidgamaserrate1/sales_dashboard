@@ -1,5 +1,3 @@
-
-
 import React, { useEffect, useState } from "react";
 import {
     FormControl,
@@ -89,68 +87,66 @@ const GroupedProductForm = ()=>{
       message = 'Por favor, selecione pelo menos 2 itens simples'
   return (
     <>
-        <HeaderTopBar/>
-        <div className={style.configurableProduct_form}>
-            <Heading   as='h2' size='md'>Cadastro- Item Agrupado</Heading>
-            <FormControl isInvalid={isError} style={{ margin:'auto auto', width:'100%' }}>
-                <FormLabel>Nome</FormLabel>
-                <Input type='text' placeholder="Nome do produto" value={name} onChange={(e) => setName(e.target.value) } />
-                
-                <FormLabel>Descrição</FormLabel>
-                <Textarea type='text' placeholder="Descrição do produto"  value={description} onChange={(e) => setDescription(e.target.value) } />
-                
-                <FormLabel>Valor</FormLabel>
-                <Input  type='number'  placeholder="Valor do produto"  value={value} onChange={(e) => setValue(e.target.value) } />
-                
-                <Divider/>
-                <FormLabel>Itens Simples</FormLabel>
-                <Divider/>
-                <div className={style.configurableProduct_form__list_simple}> 
-                  { listSimpleProducs && (
-                    listSimpleProducs
-                      .sort((a, b) => a.name.localeCompare(b.name)) 
-                      .map((product)=>(
-                        <Checkbox className={style.configurableProduct_form__list_simple_item}
-                          checked={produtosSelecionados.includes(product)}
-                          onChange={() => handleSelecaoProduto(product)}
-                        >
-                          {product.name}
-                        </Checkbox>
-                        
-                      ))
-                  )}                  
-                </div>
-                <Divider/>
-
-                { !isError && (
-                    <Button
-                    mt={8}
-                    colorScheme='teal'                
-                    type='submit'
-                    onClick={saveProduct}
+    <HeaderTopBar/>
+    <div className={style.configurableProduct_form}>
+        <Heading   as='h2' size='md'>Cadastro- Item Agrupado</Heading>
+        <FormControl isInvalid={isError} style={{ margin:'auto auto', width:'100%' }}>
+            <FormLabel>Nome</FormLabel>
+            <Input type='text' placeholder="Nome do produto" value={name} onChange={(e) => setName(e.target.value) } />
+            
+            <FormLabel>Descrição</FormLabel>
+            <Textarea type='text' placeholder="Descrição do produto"  value={description} onChange={(e) => setDescription(e.target.value) } />
+            
+            <FormLabel>Valor</FormLabel>
+            <Input  type='number'  placeholder="Valor do produto"  value={value} onChange={(e) => setValue(e.target.value) } />
+            
+            <Divider/>
+            <FormLabel>Itens Simples</FormLabel>
+            <Divider/>
+            <div className={style.configurableProduct_form__list_simple}> 
+              { listSimpleProducs && (
+                listSimpleProducs
+                  .sort((a, b) => a.name.localeCompare(b.name)) 
+                  .map((product)=>(
+                    <Checkbox className={style.configurableProduct_form__list_simple_item}
+                      checked={produtosSelecionados.includes(product)}
+                      onChange={() => handleSelecaoProduto(product)}
                     >
+                      {product.name}
+                    </Checkbox>
+                  ))
+              )}                  
+            </div>
+            <Divider/>
+
+            { !isError && (
+                <Button
+                mt={8}
+                colorScheme='teal'                
+                type='submit'
+                onClick={saveProduct}
+                >
+                Cadastrar
+                </Button>
+            )}
+            { isError && (
+                <>
+                    <Button
+                        mt={8}
+                        colorScheme='teal'                
+                        type='submit'
+                        isDisabled={true}
+                    >   
                     Cadastrar
                     </Button>
+                    <FormErrorMessage>
+                        {message}
+                    </FormErrorMessage>
+                </>
                 )}
-                     
-                { isError && (
-                    <>
-                        <Button
-                            mt={8}
-                            colorScheme='teal'                
-                            type='submit'
-                            isDisabled={true}
-                        >   
-                        Cadastrar
-                        </Button>
-                        <FormErrorMessage>
-                            {message}
-                        </FormErrorMessage>
-                    </>
-                    )}
-            </FormControl>
-            
-        </div>
+        </FormControl>
+        
+    </div>
     </>
   )
 }

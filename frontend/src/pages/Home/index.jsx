@@ -7,7 +7,9 @@ import AddProduct from "../../components/AddProduct";
  
 const Home = ()=>{
     const [items, setItems]=useState([])
-    
+    const isAdminValue  = localStorage.getItem('isAdmin')
+    const isAdmin = JSON.parse(isAdminValue);
+     
     useEffect(()=>{
         fetch('http://localhost:4000/api/list_products')
         .then((res)=>res.json())
@@ -17,22 +19,22 @@ const Home = ()=>{
 
     return(
         <>
-            <HeaderTopBar>                       
-            </HeaderTopBar>
-            <AddProduct/>
-            <div className={style.items_container}>
-                {items.map((item)=>(
-                    <ItemCard 
-                        key={item.id + item.name}
-                        id={item.id}
-                        name ={item.name}
-                        description={item.description}
-                        type={item.type}
-                        value={item.value}
-                    />
-                ))}
-            </div>
-             
+        <HeaderTopBar>                       
+        </HeaderTopBar>
+        <AddProduct/>
+        <div className={style.items_container}>
+            {items.map((item)=>(
+                <ItemCard 
+                    key={item.id + item.name}
+                    id={item.id}
+                    name ={item.name}
+                    description={item.description}
+                    type={item.type}
+                    value={item.value}
+                    isAdmin={isAdmin}
+                />
+            ))}
+        </div>
         </>
     )
 }

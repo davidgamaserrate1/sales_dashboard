@@ -14,13 +14,14 @@ export class AuthController{
         try{
             const result = await this.authService.login(loginDto);
             return response.status(200).json({
-                
-                token: result.token
+                token: result.token,
+                isAdmin: result.isAdmin
+
             })
         }catch(err){
             return response.status(500).json({
                 status:'Error!',
-                message:'Erro aor realizar login',
+                message:`Erro:  ${err}` ,
                
             })
         }
@@ -28,18 +29,20 @@ export class AuthController{
 
     @Post('/register')
      async register(@Req() request:Request, @Res() response :Response, @Body() registerDto: RegisterUsersDto):Promise<any>{
-          try {
-               const result = await this.authService.register(registerDto);
-               return response.status(200).json({
-                token: result.token
-               });
-             } catch (err) {
-               console.log(err)
-               return response.status(500).json({
-                 status: 'Error!',
-                 message: `Erro:  ${err}` ,
-               });
-             }
-           }
-     
+      try {
+            const result = await this.authService.register(registerDto);
+            return response.status(200).json({
+              token: result.token,
+            
+            });
+          } catch (err) {
+            console.log(err)
+            return response.status(500).json({
+              status: 'Error!',
+              message: `Erro:  ${err}` ,
+            });
+          }
+        }
+
+  
 }

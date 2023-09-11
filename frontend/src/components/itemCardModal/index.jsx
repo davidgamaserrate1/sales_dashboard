@@ -10,7 +10,8 @@ import ModalBodyGroupedProduct from '../ModalBodyGroupedProduct'
 
 
 const ItemCardModal = (props) =>{       
-  const admin = false
+  const isAdminValue  = localStorage.getItem('isAdmin')
+  const isAdmin = JSON.parse(isAdminValue);
   return (
       props.type && (
       <Modal isOpen={props.isOpen} onClose={props.onClose} isCentered>
@@ -20,7 +21,7 @@ const ItemCardModal = (props) =>{
           {props.type ==="Produto Simples" &&
             <ModalBodySimpleProduct
               id={props.id}
-              isAdmin={admin}
+              isAdmin={isAdmin}
               name={props.name}
               description={props.description}
               type={props.type}             
@@ -31,7 +32,7 @@ const ItemCardModal = (props) =>{
           {props.type ==="Produto Digital" &&
             <ModalBodyDigitalProduct
               id={props.id}
-              isAdmin={admin}
+              isAdmin={isAdmin}
               name={props.name}
               description={props.description}
               type={props.type}             
@@ -42,7 +43,7 @@ const ItemCardModal = (props) =>{
           {props.type ==="Produto Configurável" &&
             <ModalBodyConfigurableProduct
               id={props.id}
-              isAdmin={admin}
+              isAdmin={isAdmin}
               name={props.name}
               description={props.description}
               type={props.type}             
@@ -53,7 +54,7 @@ const ItemCardModal = (props) =>{
           {props.type ==="Produto Agrupado" &&
             <ModalBodyGroupedProduct
               id={props.id}
-              isAdmin={admin}
+              isAdmin={isAdmin}
               name={props.name}
               description={props.description}
               type={props.type}             

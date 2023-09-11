@@ -4,23 +4,6 @@ import style from './modalBodyConfigurableProduct-styles.module.css'
 import icon from '../../assets/icons-produtos.svg'
 
 
-// async function updateSimpleItem(item){
-    
-    
-//     await fetch(`http://localhost:4000/api/configurable_product/5`, {
-//         method:'PUT',
-//         headers: {
-//             'Content-Type': 'application/json' 
-//           },
-//         body:JSON.stringify(item)
-//     })
-//     .then((res)=>res.json())
-//     .then((resp)=>{   
-//         console.log(resp)           
-//     })
-// }
-
-
 const ModalBodyConfigurableProduct =(props)=>{
     const id = props.id
 
@@ -80,7 +63,7 @@ const ModalBodyConfigurableProduct =(props)=>{
     
     return(
     <>
-        {!props.isAdmin ?(
+        {props.isAdmin ?(
             <>
             <ModalHeader>                
                 <FormLabel>Nome do produdo </FormLabel>

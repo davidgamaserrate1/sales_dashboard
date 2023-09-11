@@ -1,5 +1,3 @@
-
-
 import React, {  useState } from "react";
 import {
     FormControl,
@@ -53,49 +51,48 @@ const SimpleProductForm = ()=>{
     
   return (
     <>
-        <HeaderTopBar/>
-        <div className={style.simpleProduct_form}>            
-            <Heading   as='h2' size='md'>Cadastro - Item Simples</Heading>
-            <FormControl isInvalid={isError} style={{ margin:'auto auto', width:'100%' }}>
-                <FormLabel>Nome</FormLabel>
-                <Input type='text' placeholder="Nome do produto" value={name} onChange={(e) => setName(e.target.value) } />
-                
-                <FormLabel>Descrição</FormLabel>
-                <Textarea type='text' placeholder="Descrição do produto"  value={description} onChange={(e) => setDescription(e.target.value) } />
-                
-                <FormLabel>Valor</FormLabel>
-                <Input  type='number'  placeholder="Valor do produto"  value={value} onChange={(e) => setValue(e.target.value) } />
+      <HeaderTopBar/>
+      <div className={style.simpleProduct_form}>            
+          <Heading   as='h2' size='md'>Cadastro - Item Simples</Heading>
+          <FormControl isInvalid={isError} style={{ margin:'auto auto', width:'100%' }}>
+              <FormLabel>Nome</FormLabel>
+              <Input type='text' placeholder="Nome do produto" value={name} onChange={(e) => setName(e.target.value) } />
+              
+              <FormLabel>Descrição</FormLabel>
+              <Textarea type='text' placeholder="Descrição do produto"  value={description} onChange={(e) => setDescription(e.target.value) } />
+              
+              <FormLabel>Valor</FormLabel>
+              <Input  type='number'  placeholder="Valor do produto"  value={value} onChange={(e) => setValue(e.target.value) } />
 
-                { !isError && (
-                    <Button
+              { !isError && (
+                  <Button
                     mt={8}
                     colorScheme='teal'                
                     type='submit'
                     onClick={saveProduct}
-                    >
-                    Cadastrar
-                    </Button>
-                )}
-                     
-                { isError && (
-                    <>
-                        <Button
-                            mt={8}
-                            colorScheme='teal'                
-                            type='submit'
-                            isDisabled={true}
-                         
-                        >   
-                        Cadastrar
-                        </Button>
-                        <FormErrorMessage>
-                            Por favor, preencha todos os campos.
-                        </FormErrorMessage>
-                    </>
-                    )}
-            </FormControl>
-            
-        </div>
+                  >
+                  Cadastrar
+                  </Button>
+              )}
+                    
+              { isError && (
+                  <>
+                      <Button
+                          mt={8}
+                          colorScheme='teal'                
+                          type='submit'
+                          isDisabled={true}
+                        
+                      >   
+                      Cadastrar
+                      </Button>
+                      <FormErrorMessage>
+                          Por favor, preencha todos os campos.
+                      </FormErrorMessage>
+                  </>
+                  )}
+          </FormControl>
+      </div>
     </>
   )
 }

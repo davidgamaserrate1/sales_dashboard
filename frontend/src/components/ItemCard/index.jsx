@@ -11,7 +11,9 @@ const ItemCard = (props)=>{
     const [isOpenCard, setIsOpenCard] = useState(false);  
     const { isOpen, onOpen, onClose } = useDisclosure();
     const toast =useToast()
-    const isAdmin = false
+    
+    const isAdminValue  = localStorage.getItem('isAdmin')
+    const isAdmin = JSON.parse(isAdminValue);
 
     const openModalProduct = () => {
         setIsOpenCard(true);
@@ -42,7 +44,6 @@ const ItemCard = (props)=>{
             break;
 
         }
-
        
     await fetch(url+id, {
         method:'DELETE'
@@ -112,19 +113,19 @@ const ItemCard = (props)=>{
                 />
             )}
 
-        <AlertDialog isOpen={isOpen} onClose={onClose} isCentered>
-        <AlertDialogOverlay />
-        <AlertDialogContent style={{ margin: '40px' }}>
-          <AlertDialogHeader>Tem certeza que deseja remover este produto?</AlertDialogHeader>
-          <AlertDialogBody>Essa ação não poderá ser desfeita</AlertDialogBody>
-          <AlertDialogFooter>
-            <Button onClick={onClose}>Cancelar</Button>
-            <Button colorScheme="red" ml={3} onClick={() => remover_item(props.type, props.id) } autoFocus>
-              Remover
-            </Button>
-          </AlertDialogFooter>
-        </AlertDialogContent>  
-      </AlertDialog>
+            <AlertDialog isOpen={isOpen} onClose={onClose} isCentered>
+            <AlertDialogOverlay />
+            <AlertDialogContent style={{ margin: '40px' }}>
+            <AlertDialogHeader>Tem certeza que deseja remover este produto?</AlertDialogHeader>
+            <AlertDialogBody>Essa ação não poderá ser desfeita</AlertDialogBody>
+            <AlertDialogFooter>
+                <Button onClick={onClose}>Cancelar</Button>
+                <Button colorScheme="red" ml={3} onClick={() => remover_item(props.type, props.id) } autoFocus>
+                Remover
+                </Button>
+            </AlertDialogFooter>
+            </AlertDialogContent>  
+        </AlertDialog>
 
         </>
     )

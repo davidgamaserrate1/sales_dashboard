@@ -22,3 +22,18 @@
     border:1px solid #555;
 }
  
+
+.logout{
+    position: relative;
+}
+
+.logout__text{
+    position: absolute;
+    right: 16px;
+    top: 8px;
+}
+
+.logout__text:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}

@@ -17,6 +17,18 @@ export class AuthService{
         private readonly usersService: UsersService 
     ){}
 
+    async isAdmin(username: string): Promise<boolean> {
+        const user = await this.prismaService.userModel.findUnique({
+            where: { username },
+        });
+
+        if (!user) {
+            throw new NotFoundException('Usuário não encontrado');
+        }
+
+        return user.isAdmin === true;
+    }    
+
     async login(loginDto: LoginDto):Promise<any>{
         const {username, password}=loginDto
 
@@ -34,8 +46,12 @@ export class AuthService{
             throw new NotFoundException('Senha incorreta')
         }
 
+        const isAdmin = users.isAdmin === true;
+
+
         return{
-            token: this.jwtService.sign({username})
+            token: this.jwtService.sign({username}),
+            isAdmin:isAdmin
         }
     }
 
@@ -43,7 +59,7 @@ export class AuthService{
         const createUser = new UserModel()
         createUser.username =createDto.username
         createUser.password= await bcrypt.hash(createDto.password, 10)
-        createUser.isAdmin = false
+        createUser.isAdmin = createDto.isAdmin
 
         const user = await this.usersService.createUser(createUser)
 

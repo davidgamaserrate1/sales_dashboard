@@ -5,6 +5,7 @@ import { ConfigurableProductModule } from './configurable_product/configurable_p
 import { GroupedProductModule } from './grouped_product/grouped_product.module';
 import { SelectAllProductsModule } from './select_all_products/select_all_procuts.module';
 import { AuthModule } from './authentication/auth.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import { AuthModule } from './authentication/auth.module';
     ConfigurableProductModule,
     GroupedProductModule,
     SelectAllProductsModule,
+    UsersModule,
     AuthModule
   ],
   controllers: [],

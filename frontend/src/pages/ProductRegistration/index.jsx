@@ -24,8 +24,7 @@ const ProductRegistration = (props)=>{
               break;
             case 'grouped':
                 setGrouped_product(true)
-              break;
-             
+              break;             
             default:
                 setSimple_product(false)
           }

@@ -1,0 +1,22 @@
+.login_container{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.login_redirect{
+    width: 100%;     
+    text-align: right;
+     margin: 8px 0 ;
+}
+
+div.login_redirect span{
+    color: #FFC393;
+}
+
+div.login_redirect span:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
