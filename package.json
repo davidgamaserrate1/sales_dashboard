@@ -10,6 +10,12 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
-        "concurrently": "^8.2.1"
+        "@nestjs/jwt": "^10.1.1",
+        "@nestjs/passport": "^10.0.1",
+        "@types/bcrypt": "^5.0.0",
+        "class-validator": "^0.14.0",
+        "concurrently": "^8.2.1",
+        "passport": "^0.6.0",
+        "passport-jwt": "^4.0.1"
     }
 }
