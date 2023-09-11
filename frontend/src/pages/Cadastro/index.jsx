@@ -1,41 +1,54 @@
 import React, { useState } from "react";
 import style from './login-styles.module.css'
 import ModalAuth from "../../components/modalAuth";
-import { Button, FormControl, FormErrorMessage, Heading, Input } from "@chakra-ui/react";
+import { Button, FormControl, FormErrorMessage, Heading, Input, useToast } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 
 const Login = () =>{
-    const [email, setEmail] =useState('')
+    const [username, setUsername] =useState('')
     const [password, setPassword]=useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
 
     
-
+    const toast = useToast()
     const navigate = useNavigate()
 
     const isError = password !== confirmPassword 
     
     const handleRegister = async()=>{
         const credentialsRegister ={
-            email,
+            username,
             password
         }
-        await fetch('', {
+
+        await fetch('http://localhost:4000/auth/register', {
+            method:'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
             body: JSON.stringify(credentialsRegister)
         })
         .then((res)=>res.json())
-        .then((response)=> console.log(response))
-    }
+        .then(()=> {
+            toast({
+                title: 'Cadastro realizado com sucesso!',                 
+                status: 'success',
+                duration: 4000,
+                isClosable: true,
+              })
+            navigate('/login')
 
+        })
+    }
 
     return( 
         <ModalAuth>
         <div className={style.login_container}>
             <Heading   as='h3' size='lg' color={'#555555'}>Cadastro </Heading>
-                <Input type='email' mt={8} 
-                    placeholder="Endereço de e-mail."
-                    value={email}
-                    onChange={(e)=>setEmail(e.target.value)}
+                <Input type='text' mt={8} 
+                    placeholder="Usuário."
+                    value={username}
+                    onChange={(e)=>setUsername(e.target.value)}
                 />
             <FormControl isInvalid={isError}  >
                 <Input type='password'mt={8} 

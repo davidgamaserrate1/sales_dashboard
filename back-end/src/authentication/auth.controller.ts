@@ -14,9 +14,8 @@ export class AuthController{
         try{
             const result = await this.authService.login(loginDto);
             return response.status(200).json({
-                status:'Ok!',
-                message:'Login realizado com sucesso!',
-                result: result
+                
+                token: result.token
             })
         }catch(err){
             return response.status(500).json({
@@ -32,15 +31,13 @@ export class AuthController{
           try {
                const result = await this.authService.register(registerDto);
                return response.status(200).json({
-                 status: 'Ok!',
-                 message: 'Successfully register user!',
-                 result: result,
+                token: result.token
                });
              } catch (err) {
                console.log(err)
                return response.status(500).json({
                  status: 'Error!',
-                 message: 'Internal Server Error!',
+                 message: `Erro:  ${err}` ,
                });
              }
            }
