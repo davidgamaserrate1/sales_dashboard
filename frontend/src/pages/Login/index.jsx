@@ -28,17 +28,27 @@ const Login = ()=>{
         localStorage.setItem('token',res.token)
         localStorage.setItem('isAdmin',res.isAdmin === true)
         
+       if(res.token){
         toast({
-            title: 'Cadastro realizado com sucesso!',                 
+            title: 'Login realizado com sucesso!',                 
             status: 'success',
             duration: 4000,
             isClosable: true,
           })
        navigate('/home')
+       }else{
+        toast({
+            title: 'Usuário ou senha inválido',                 
+            status: 'error',
+            duration: 4000,
+            isClosable: true,
+          })
+       }
+        
 
     })
 }
-
+    let error = username === '' || password ===''
     return(
         <ModalAuth>
            <div className={style.login_container}>
@@ -54,7 +64,16 @@ const Login = ()=>{
                     value={password}
                     onChange={(e)=>setPassword(e.target.value)}
                 />
-                
+                {error ? (<Button
+                    mt={8}
+                    colorScheme='teal'
+                    width={'100%'}
+                    type='submit'
+                     
+                    isDisabled={true}
+                >
+                Login
+                </Button> ) :(
                 <Button
                     mt={8}
                     colorScheme='teal'
@@ -63,7 +82,9 @@ const Login = ()=>{
                     onClick={handleLogin}
                 >
                 Login
-                </Button>                
+                </Button> )}
+                               
+                               
             </FormControl>
             <div className={style.login_redirect}>
                 Não possi conta? 
