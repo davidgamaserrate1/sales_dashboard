@@ -14,7 +14,7 @@ Para executar este projeto em seu ambiente local, siga os passos abaixo:
 2. Clone este repositório para o seu computador:
 
    ```bash
-   https://github.com/davidgamaserrate1/imagetech_prova_pratica.git
+   git clone https://github.com/davidgamaserrate1/imagetech_prova_pratica.git
 
 3. Acesse o diretório do projeto:
 
