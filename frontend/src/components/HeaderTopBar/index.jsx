@@ -4,7 +4,6 @@ import style  from './header-styles.module.css'
 
 const removeAdmin =()=>{
     localStorage.removeItem('isAdmin')
-
 }
 
 const HeaderTopBar = (porps)=>{
@@ -17,7 +16,7 @@ const HeaderTopBar = (porps)=>{
         <div className={style.logout}>
             <a href="/login"  onClick={removeAdmin} className={style.logout__text}>sair</a>          
         </div>
-        <a href="/" className={style.header_top__home}>
+        <a href="/home" className={style.header_top__home}>
             <span className="material-symbols-outlined">home</span> Incio
         </a>
         </>
